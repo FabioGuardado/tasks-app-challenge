@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  --primary-background-color: #222528;
+  --secondary-background-color: #2c2f33;
+  --primary-text-color: #ffffff;
+  --secondary-text-color: #8d9093;
+  --accent-color: #da584b;
+  --ios-tag-background-color: #333c36;
+  --ios-tag-text-color: #68a34e;
+  --android-tag-background-color: #3f3c36;
+  --android-tag-text-color: #daac52;
+}
+
+body {
+  background-color: var(--primary-background-color);
+  color: var(--primary-text-color);
+  font-family: sans-serif;
+  font-size: 16px;
+}
