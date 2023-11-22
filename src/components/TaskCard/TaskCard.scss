@@ -1,0 +1,58 @@
+@use '../../styles/variables';
+
+div.task-card {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: variables.$secondary-background-color;
+  border-radius: 8px;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  row-gap: 0.6rem;
+
+  &__header,
+  &__time-details {
+    justify-content: space-between;
+  }
+
+  > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  &__tags-list {
+    > div {
+      margin-right: 0.5rem;
+    }
+  }
+
+  &__footer {
+    justify-content: space-between;
+  }
+}
+
+.user-photo {
+  img {
+    border-radius: 50%;
+  }
+}
+
+.menu-toggler {
+  background-color: transparent;
+  border: none;
+  color: variables.$secondary-text-color;
+  cursor: pointer;
+}
+
+.icons-box {
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+
+  > div > span > svg {
+    margin-left: 5px;
+    margin-right: 12px;
+  }
+}

@@ -1,0 +1,35 @@
+@use '../../styles/variables';
+
+.tag {
+  height: 32px;
+  padding: 4px 16px;
+  border-radius: 4px;
+  font-weight: 600;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  
+  svg {
+    margin-right: 5px;
+  }
+
+  &__ios {
+    background-color: variables.$ios-tag-background-color;
+    color: variables.$ios-tag-text-color;
+  }
+
+  &__android {
+    background-color: variables.$android-tag-background-color;
+    color: variables.$android-tag-text-color;
+  }
+
+  &__on-time {
+    background-color: variables.$tertiary-background-color;
+  }
+
+  &__delayed {
+    background-color: variables.$delayed-tag-background-color;
+    color: variables.$delayed-tag-text-color;
+  }
+}

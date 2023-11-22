@@ -17,10 +17,11 @@ module.exports = {
   plugins: ['react-refresh', '@typescript-eslint', 'prettier'],
   rules: {
     'react/react-in-jsx-scope': 0,
-    'import/no-absolute-path': 0,
+    'react/function-component-definition': 0,
     'react-refresh/only-export-components': [
       'warn',
       { allowConstantExport: true },
     ],
+    'import/no-extraneous-dependencies': 0,
   },
 }
