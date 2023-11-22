@@ -1,0 +1,36 @@
+@use '../../styles/variables';
+
+.content-toolbar {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  &__button {
+    height: 32px;
+    width: 32px;
+    color: variables.$primary-text-color;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  &__views {
+    > button {
+      background-color: transparent;
+      border: none;
+
+      &.active-view {
+        border: 1px solid variables.$accent-color;
+        color: variables.$accent-color;
+      }
+    }
+  }
+
+  &__add-task {
+    > button {
+      background-color: variables.$accent-color;
+      border: none;
+    }
+  }
+}
