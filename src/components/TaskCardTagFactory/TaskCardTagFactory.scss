@@ -28,8 +28,13 @@
     background-color: variables.$tertiary-background-color;
   }
 
-  &__delayed {
-    background-color: variables.$delayed-tag-background-color;
-    color: variables.$delayed-tag-text-color;
+  &__almost-late {
+    background-color: variables.$almost-late-tag-background-color;
+    color: variables.$almost-late-tag-text-color;
+  }
+
+  &__late {
+    background-color: variables.$late-tag-background-color;
+    color: variables.$late-tag-text-color;
   }
 }

@@ -19,10 +19,13 @@ type FactoryPropTypes = {
 };
 
 const TaskCardTag = ({ type, label }: FactoryPropTypes) => {
-  const alarmIcon = (
-    <span>
-      <Icon icon="gg:alarm" height={24} />
-    </span>
+  const timeTagBody = (tagLabel: string) => (
+    <>
+      <span>
+        <Icon icon="gg:alarm" height={24} />
+      </span>
+      <span>{tagLabel}</span>
+    </>
   );
 
   switch (type) {
@@ -33,20 +36,13 @@ const TaskCardTag = ({ type, label }: FactoryPropTypes) => {
       return <Tag tagColorClass="tag__android">{label}</Tag>;
     }
     case 'on-time': {
-      return (
-        <Tag tagColorClass="tag__on-time">
-          {alarmIcon}
-          <span>{label}</span>
-        </Tag>
-      );
+      return <Tag tagColorClass="tag__on-time">{timeTagBody(label)}</Tag>;
     }
-    case 'delayed': {
-      return (
-        <Tag tagColorClass="tag__delayed">
-          {alarmIcon}
-          <span>{label}</span>
-        </Tag>
-      );
+    case 'almost-late': {
+      return <Tag tagColorClass="tag__almost-late">{timeTagBody(label)}</Tag>;
+    }
+    case 'late': {
+      return <Tag tagColorClass="tag__late">{timeTagBody(label)}</Tag>;
     }
     default: {
       return <Tag tagColorClass="">{label}</Tag>;
