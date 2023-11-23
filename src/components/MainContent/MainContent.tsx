@@ -1,14 +1,18 @@
 import SearchBar from '../SearchBar/SearchBar';
 import ContentToolbar from '../ContentToolbar/ContentToolbar';
 import TasksGrid from '../TasksGrid/TasksGrid';
+
 import './MainContent.scss';
+import TasksGridErrorBoundary from '../TasksGridErrorBoundary/TasksGridErrorBoundary';
 
 const MainContent = () => {
   return (
     <div className="main-content">
       <SearchBar />
       <ContentToolbar />
-      <TasksGrid />
+      <TasksGridErrorBoundary>
+        <TasksGrid />
+      </TasksGridErrorBoundary>
     </div>
   );
 };
