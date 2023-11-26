@@ -1,19 +1,56 @@
+import { useState } from 'react';
 import { Icon } from '@iconify/react';
 
 import placeholderImage from '../../assets/placeholder-profile-photo.jpg';
 import TaskCardTag from '../TaskCardTagFactory/TaskCardTagFactory';
 
 import './TaskCard.scss';
+import useModalContext from '../../hooks/useModalContext';
+import TasksForm from '../TasksForm/TasksForm';
+import DeleteTaskConfirmationModal from '../DeleteTaskConfirmationModal/DeleteTaskConfirmationModal';
 
 const TaskCard = () => {
+  const [isSubMenuOpen, setIsSubMenuOpen] = useState<boolean>(false);
+  const { showModal } = useModalContext();
+
+  const handleClickMenuButton = () => setIsSubMenuOpen(!isSubMenuOpen);
+
   return (
     <div className="task-card">
       <div className="task-card__header">
         <h4 className="task-card__title">Slack</h4>
         <div className="task-card__menu">
-          <button type="button" className="menu-toggler">
+          <button
+            type="button"
+            className="menu-toggler"
+            onClick={handleClickMenuButton}
+          >
             <Icon icon="tabler:dots" height={20} />
           </button>
+          <div
+            className={`task-card__submenu ${
+              isSubMenuOpen
+                ? 'task-card__submenu--open'
+                : 'task-card__submenu--hidden'
+            }`}
+          >
+            <button
+              type="button"
+              onClick={() => showModal(<TasksForm action="edit" />)}
+              className="task-card__submenu-button"
+            >
+              <Icon icon="mingcute:pencil-line" height={16} />
+              Edit
+            </button>
+            <button
+              type="button"
+              onClick={() => showModal(<DeleteTaskConfirmationModal />)}
+              className="task-card__submenu-button"
+            >
+              <Icon icon="material-symbols:delete-outline" height={16} />
+              Delete
+            </button>
+          </div>
         </div>
       </div>
 

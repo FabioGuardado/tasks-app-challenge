@@ -1,0 +1,46 @@
+@use '../../styles/variables';
+
+
+.modal-wrapper {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.50);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  width: 500px;
+  padding: 20px;
+  background-color: variables.$primary-background-color;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+}
+
+.close-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: variables.$primary-text-color;
+  padding: 5px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: variables.$primary-background-color;
+  }
+}

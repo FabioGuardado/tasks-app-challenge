@@ -1,8 +1,14 @@
 import { Icon } from '@iconify/react';
 
+import useModalContext from '../../hooks/useModalContext';
+
+import TasksForm from '../TasksForm/TasksForm';
+
 import './ContentToolbar.scss';
 
 const ContentToolbar = () => {
+  const { showModal } = useModalContext();
+
   return (
     <div className="content-toolbar">
       <div className="content-toolbar__views">
@@ -14,7 +20,11 @@ const ContentToolbar = () => {
         </button>
       </div>
       <div className="content-toolbar__add-task">
-        <button className="content-toolbar__button" type="button">
+        <button
+          className="content-toolbar__button"
+          type="button"
+          onClick={() => showModal(<TasksForm action="create" />)}
+        >
           <Icon icon="ic:outline-plus" height={20} />
         </button>
       </div>
