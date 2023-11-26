@@ -7,34 +7,67 @@ import { GET_TASKS } from '../../api/tasksQueries';
 import Spinner from '../Spinner/Spinner';
 import EmptyList from '../EmptyList/EmptyList';
 
+import { ITask } from '../../interfaces/task';
+
+import { STATUS_COLUMN_NAMES } from '../../constants/tasksGrid';
+
 import './TasksGrid.scss';
 
 const TasksGrid = () => {
-  const result = useQuery(GET_TASKS);
-  console.log(result);
+  const { loading, error, data } = useQuery(GET_TASKS);
 
-  if (result.loading) return <Spinner />;
+  if (loading) return <Spinner />;
 
-  if (result.error) throw new Error(result.error.message);
+  if (error) throw new Error(error.message);
 
-  if (result.data?.length === 0 && !result.error) return <EmptyList />;
+  if (data.tasks?.length === 0 && !error) return <EmptyList />;
+
+  type GroupedDataType = {
+    [propName: string]: ITask[];
+  };
+
+  type DinamycGroupedDataObjectKey<T> = keyof T;
+
+  const groupedData = data.tasks.reduce(
+    (acc: GroupedDataType, currentValue: ITask) => {
+      acc[currentValue.status as DinamycGroupedDataObjectKey<typeof acc>] = [
+        ...(acc[
+          currentValue.status as DinamycGroupedDataObjectKey<typeof acc>
+        ] || []),
+        currentValue,
+      ];
+      return acc;
+    },
+    {}
+  );
+
+  const capitalizeColumnName = (columnName: string) => {
+    const words = columnName.split('_');
+    const capitalizedWords = words.map(
+      (word: string) => word.charAt(0) + word.toLowerCase().slice(1)
+    );
+
+    return capitalizedWords.reduce(
+      (acc, currentWord: string) => `${acc} ${currentWord}`,
+      ''
+    );
+  };
+
+  console.log(groupedData);
 
   return (
     <div className="tasks-grid">
-      <div className="tasks-grid__column">
-        <h4 className="tasks-grid__title">Working (03)</h4>
-        <TaskCard />
-        <TaskCard />
-      </div>
-      <div className="tasks-grid__column">
-        <h4 className="tasks-grid__title">In Progress (03)</h4>
-        <TaskCard />
-        <TaskCard />
-      </div>
-      <div className="tasks-grid__column">
-        <h4 className="tasks-grid__title">Completed (03)</h4>
-        <TaskCard />
-      </div>
+      {STATUS_COLUMN_NAMES.map((columnName: string) => (
+        <div className="tasks-grid__column">
+          <h4 className="tasks-grid__title">{`${capitalizeColumnName(
+            columnName
+          )} (${groupedData[columnName]?.length || 0})`}</h4>
+          <TaskCard />
+          <TaskCard />
+          <TaskCard />
+          <TaskCard />
+        </div>
+      ))}
     </div>
   );
 };
