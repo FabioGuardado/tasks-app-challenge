@@ -55,7 +55,11 @@ const TaskCard = ({ task }: PropsTypes) => {
             </button>
             <button
               type="button"
-              onClick={() => showModal(<DeleteTaskConfirmationModal />)}
+              onClick={() =>
+                showModal(
+                  <DeleteTaskConfirmationModal taskId={task?.id || ''} />
+                )
+              }
               className="task-card__submenu-button"
             >
               <Icon icon="material-symbols:delete-outline" height={16} />

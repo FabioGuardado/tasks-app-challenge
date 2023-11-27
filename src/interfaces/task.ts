@@ -1,5 +1,5 @@
 export interface ITask {
-  id?: number;
+  id?: string;
   name?: string;
   tags?: Tags[];
   dueDate?: string;

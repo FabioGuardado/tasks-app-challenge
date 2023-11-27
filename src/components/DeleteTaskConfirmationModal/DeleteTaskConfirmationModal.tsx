@@ -1,13 +1,24 @@
 import { useMutation } from '@apollo/client';
 
 import useModalContext from '../../hooks/useModalContext';
-import { DELETE_TASK } from '../../api/tasksQueries';
+import { GET_TASKS, DELETE_TASK } from '../../api/tasksQueries';
 
 import './DeleteTaskConfirmationModal.scss';
 
-const DeleteTaskConfirmationModal = () => {
+type PropsTypes = {
+  taskId: string;
+};
+
+const DeleteTaskConfirmationModal = ({ taskId }: PropsTypes) => {
   const { clearModal } = useModalContext();
-  const [deleteTask] = useMutation(DELETE_TASK);
+  const [deleteTask] = useMutation(DELETE_TASK, {
+    refetchQueries: [{ query: GET_TASKS }],
+  });
+
+  const handleDeleteTask = () => {
+    deleteTask({ variables: { id: taskId } });
+    clearModal();
+  };
 
   return (
     <div className="delete-task-confirmation">
@@ -24,7 +35,7 @@ const DeleteTaskConfirmationModal = () => {
         </button>
         <button
           type="button"
-          onClick={() => deleteTask}
+          onClick={handleDeleteTask}
           className="delete-task-confirmation__buttons--action"
         >
           Continue
