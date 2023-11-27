@@ -1,25 +1,26 @@
 import { useState } from 'react';
-import { useMutation } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 
-import { CREATE_TASK, UPDATE_TASK } from '../../api/tasksQueries';
+import { CREATE_TASK, GET_TASKS, UPDATE_TASK } from '../../api/tasksQueries';
+import { GET_USERS } from '../../api/usersQueries';
 
 import useModalContext from '../../hooks/useModalContext';
 
 import { ITask, Tags, PointEstimate } from '../../interfaces/task';
+import IUserSummary from '../../interfaces/users';
+
+import {
+  TASKS_FORM_ACTION_TYPES,
+  FORM_INITIAL_STATE,
+} from '../../constants/taskForm';
 
 import './TaskForm.scss';
+
+const { CREATE } = TASKS_FORM_ACTION_TYPES;
 
 type TaskFormProps = {
   action: string;
   task?: ITask;
-};
-
-const INITIAL_STATE = {
-  name: undefined,
-  tags: [],
-  dueDate: '',
-  pointEstimate: undefined,
-  assigneeId: undefined,
 };
 
 const TasksForm: React.FunctionComponent<TaskFormProps> = ({
@@ -27,27 +28,46 @@ const TasksForm: React.FunctionComponent<TaskFormProps> = ({
   task,
 }: TaskFormProps) => {
   TasksForm.defaultProps = {
-    task: INITIAL_STATE,
+    task: FORM_INITIAL_STATE,
   };
 
+  const { data, loading } = useQuery(GET_USERS);
+
   const [executeQuery] = useMutation(
-    action === 'create' ? CREATE_TASK : UPDATE_TASK
+    action === CREATE ? CREATE_TASK : UPDATE_TASK,
+    { refetchQueries: [{ query: GET_TASKS }] }
   );
   const { clearModal } = useModalContext();
   const [taskFields, setTaskFields] = useState(task);
 
   const handleFieldChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) =>
+  ) => {
+    let newValue: string | string[] = e.target.value;
+    if (e.target.name === 'tags') {
+      newValue = [e.target.value];
+    }
+
     setTaskFields(prevFields => ({
       ...prevFields,
-      [e.target.name]: e.target.value,
+      [e.target.name]: newValue,
     }));
+  };
 
   const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    executeQuery();
+    executeQuery({
+      variables: {
+        assigneeId: taskFields?.assigneeId,
+        name: taskFields?.name,
+        dueDate: taskFields?.dueDate,
+        pointEstimate: taskFields?.pointEstimate,
+        status: taskFields?.status,
+        tags: taskFields?.tags,
+      },
+    });
+    console.log(taskFields);
 
     clearModal();
   };
@@ -89,18 +109,24 @@ const TasksForm: React.FunctionComponent<TaskFormProps> = ({
 
           <div className="task-form__selector">
             <select
-              name="assignee"
-              id="assignee"
+              name="assigneeId"
+              id="assigneeId"
               defaultValue="Assignee"
               value={taskFields?.assigneeId}
               placeholder="Assignee"
               onChange={handleFieldChange}
+              disabled={loading}
             >
-              <option value={PointEstimate.ZERO}>0 Points</option>
-              <option value={PointEstimate.ONE}>1 Points</option>
-              <option value={PointEstimate.TWO}>2 Points</option>
-              <option value={PointEstimate.FOUR}>4 Points</option>
-              <option value={PointEstimate.EIGHT}>8 Points</option>
+              <option selected value="" disabled hidden>
+                Assignee
+              </option>
+              {!loading
+                ? data.users?.map((user: IUserSummary) => (
+                    <option key={user.id} value={user.id}>
+                      {user.fullName}
+                    </option>
+                  ))
+                : null}
             </select>
           </div>
 
@@ -143,7 +169,7 @@ const TasksForm: React.FunctionComponent<TaskFormProps> = ({
             Cancel
           </button>
           <button type="submit" className="task-form__buttons--action">
-            {action === 'create' ? 'Create' : 'Update'}
+            {action === CREATE ? 'Create' : 'Update'}
           </button>
         </div>
       </form>

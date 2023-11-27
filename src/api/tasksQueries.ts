@@ -2,18 +2,79 @@ import { gql } from '@apollo/client';
 
 export const GET_TASKS = gql`
   query getAllTasks {
-    tasks(input: { status: IN_PROGRESS }) {
+    tasks(input: {}) {
       id
       name
-      tags
-      dueDate
       pointEstimate
+      dueDate
       assignee {
-        avatar
+        id
         fullName
+        avatar
       }
+      status
+      tags
     }
   }
 `;
 
-export const GET_TASK_BY_ID = '';
+export const CREATE_TASK = gql`
+  mutation createTask(
+    $assigneeId: String
+    $name: String!
+    $dueDate: DateTime!
+    $pointEstimate: PointEstimate!
+    $status: Status!
+    $tags: [TaskTag!]!
+  ) {
+    createTask(
+      input: {
+        assigneeId: $assigneeId
+        name: $name
+        dueDate: $dueDate
+        pointEstimate: $pointEstimate
+        status: $status
+        tags: $tags
+      }
+    ) {
+      id
+      name
+    }
+  }
+`;
+
+export const UPDATE_TASK = gql`
+  mutation updateTask(
+    $id: String!
+    $assigneeId: String
+    $name: String!
+    $dueDate: DateTime!
+    $pointEstimate: PointEstimate!
+    $status: Status!
+    $tags: [TaskTag!]!
+  ) {
+    updateTask(
+      input: {
+        id: $id
+        assigneeId: $assigneeId
+        name: $name
+        dueDate: $dueDate
+        pointEstimate: $pointEstimate
+        status: $status
+        tags: $tags
+      }
+    ) {
+      id
+      name
+    }
+  }
+`;
+
+export const DELETE_TASK = gql`
+  mutation deleteTask($id: String!) {
+    deleteTask(input: { id: $id }) {
+      id
+      name
+    }
+  }
+`;
