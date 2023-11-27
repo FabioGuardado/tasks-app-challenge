@@ -14,6 +14,8 @@ import {
   FORM_INITIAL_STATE,
 } from '../../constants/taskForm';
 
+import formatInputDate from '../../utils/formatInputDate';
+
 import './TaskForm.scss';
 
 const { CREATE } = TASKS_FORM_ACTION_TYPES;
@@ -59,6 +61,7 @@ const TasksForm: React.FunctionComponent<TaskFormProps> = ({
 
     executeQuery({
       variables: {
+        id: taskFields?.id,
         assigneeId: taskFields?.assigneeId,
         name: taskFields?.name,
         dueDate: taskFields?.dueDate,
@@ -67,7 +70,6 @@ const TasksForm: React.FunctionComponent<TaskFormProps> = ({
         tags: taskFields?.tags,
       },
     });
-    console.log(taskFields);
 
     clearModal();
   };
@@ -112,7 +114,7 @@ const TasksForm: React.FunctionComponent<TaskFormProps> = ({
               name="assigneeId"
               id="assigneeId"
               defaultValue="Assignee"
-              value={taskFields?.assigneeId}
+              value={taskFields?.assigneeId || taskFields?.assignee?.id}
               placeholder="Assignee"
               onChange={handleFieldChange}
               disabled={loading}
@@ -154,7 +156,7 @@ const TasksForm: React.FunctionComponent<TaskFormProps> = ({
               type="date"
               name="dueDate"
               id="dueDate"
-              value={taskFields?.dueDate?.toLocaleString()}
+              value={formatInputDate(taskFields?.dueDate || '')}
               placeholder="Due Date"
               onChange={handleFieldChange}
             />

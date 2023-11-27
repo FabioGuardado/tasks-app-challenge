@@ -4,13 +4,13 @@ import { GET_TASKS } from '../../api/tasksQueries';
 
 import Spinner from '../Spinner/Spinner';
 import EmptyList from '../EmptyList/EmptyList';
+import TasksColumn from '../TasksColumn/TasksColumn';
 
 import { ITask } from '../../interfaces/task';
 
 import { STATUS_COLUMN_NAMES } from '../../constants/tasks';
 
 import './TasksGrid.scss';
-import TasksColumn from '../TasksColumn/TasksColumn';
 
 const TasksGrid = () => {
   const { loading, error, data } = useQuery(GET_TASKS);
@@ -39,8 +39,6 @@ const TasksGrid = () => {
     },
     {}
   );
-
-  console.log(groupedData);
 
   return (
     <div className="tasks-grid">

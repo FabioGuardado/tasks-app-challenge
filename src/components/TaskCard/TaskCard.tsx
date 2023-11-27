@@ -11,10 +11,13 @@ import DeleteTaskConfirmationModal from '../DeleteTaskConfirmationModal/DeleteTa
 import { ITask } from '../../interfaces/task';
 
 import { TASKS_ESTIMATION_IN_NUMBERS } from '../../constants/tasks';
+import { TASKS_FORM_ACTION_TYPES } from '../../constants/taskForm';
 
 import calculateDateDifference from '../../utils/calculateDateDifference';
 
 import './TaskCard.scss';
+
+const { UPDATE } = TASKS_FORM_ACTION_TYPES;
 
 type PropsTypes = {
   task: ITask;
@@ -24,7 +27,17 @@ const TaskCard = ({ task }: PropsTypes) => {
   const [isSubMenuOpen, setIsSubMenuOpen] = useState<boolean>(false);
   const { showModal } = useModalContext();
 
-  const handleClickMenuButton = () => setIsSubMenuOpen(!isSubMenuOpen);
+  const toggleMenuButton = () => setIsSubMenuOpen(!isSubMenuOpen);
+
+  const handleClickEditButton = () => {
+    showModal(<TasksForm action={UPDATE} task={task} />);
+    toggleMenuButton();
+  };
+
+  const handleClickDeleteButton = () => {
+    showModal(<DeleteTaskConfirmationModal taskId={task?.id || ''} />);
+    toggleMenuButton();
+  };
 
   return (
     <div className="task-card">
@@ -34,7 +47,7 @@ const TaskCard = ({ task }: PropsTypes) => {
           <button
             type="button"
             className="menu-toggler"
-            onClick={handleClickMenuButton}
+            onClick={toggleMenuButton}
           >
             <Icon icon="tabler:dots" height={20} />
           </button>
@@ -47,7 +60,7 @@ const TaskCard = ({ task }: PropsTypes) => {
           >
             <button
               type="button"
-              onClick={() => showModal(<TasksForm action="edit" />)}
+              onClick={handleClickEditButton}
               className="task-card__submenu-button"
             >
               <Icon icon="mingcute:pencil-line" height={16} />
@@ -55,11 +68,7 @@ const TaskCard = ({ task }: PropsTypes) => {
             </button>
             <button
               type="button"
-              onClick={() =>
-                showModal(
-                  <DeleteTaskConfirmationModal taskId={task?.id || ''} />
-                )
-              }
+              onClick={handleClickDeleteButton}
               className="task-card__submenu-button"
             >
               <Icon icon="material-symbols:delete-outline" height={16} />
