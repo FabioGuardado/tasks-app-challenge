@@ -1,14 +1,17 @@
-import MainContent from '../MainContent/MainContent';
 import Sidebar from '../Sidebar/Sidebar';
 import './Dashboard.scss';
 
-const Dashboard = () => {
+type PropsTypes = {
+  children: JSX.Element;
+};
+
+const DashboardLayout = ({ children }: PropsTypes) => {
   return (
     <div className="dashboard-container">
       <Sidebar />
-      <MainContent />
+      {children}
     </div>
   );
 };
 
-export default Dashboard;
+export default DashboardLayout;

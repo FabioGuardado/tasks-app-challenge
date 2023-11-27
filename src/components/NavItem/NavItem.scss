@@ -10,6 +10,11 @@ li.nav-item {
   color: variables.$primary-text-color;
   box-sizing: border-box;
   cursor: pointer;
+  
+  &--base:hover {
+    background-image: linear-gradient(to right, variables.$nav-item-gradient-first-color, variables.$tertiary-background-color);
+    border-right: 3px solid variables.$primary-text-color;
+  }
 
   &--active {
     color: variables.$accent-color;

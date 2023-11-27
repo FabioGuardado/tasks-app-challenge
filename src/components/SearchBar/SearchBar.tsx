@@ -1,11 +1,16 @@
 import { useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
 import { Icon } from '@iconify/react';
+
 import placeholderImage from '../../assets/placeholder-profile-photo.jpg';
 
 import './SearchBar.scss';
+import { GET_USER_AVATAR } from '../../api/usersQueries';
 
 const SearchBar = () => {
+  const { data } = useQuery(GET_USER_AVATAR);
+
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [searchText, setSearchText] = useState('');
@@ -56,7 +61,14 @@ const SearchBar = () => {
         ) : null}
       </div>
       <div className="search-bar__profile-image">
-        <img className="" height="32" src={placeholderImage} alt="Profile" />
+        <Link to="/settings">
+          <img
+            className=""
+            height="32"
+            src={data?.profile?.avatar || placeholderImage}
+            alt="Profile"
+          />
+        </Link>
       </div>
     </div>
   );

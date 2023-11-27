@@ -13,8 +13,12 @@ const NavItem = ({ path, icon, label }: PropTypes) => {
   const { pathname } = useLocation();
 
   return (
-    <Link to="/">
-      <li className={`nav-item ${pathname === path && 'nav-item--active'}`}>
+    <Link to={path}>
+      <li
+        className={`nav-item ${
+          pathname === path ? 'nav-item--active' : 'nav-item--base'
+        }`}
+      >
         <Icon height={20} icon={icon} />
         <span>{label}</span>
       </li>
