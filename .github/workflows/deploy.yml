@@ -6,8 +6,8 @@ on:
       - main
       
 env:
-  VITE_API_URL: ${{ vars.VITE_API_URL }}
-  VITE_API_TOKEN: ${{ vars.VITE_API_TOKEN }}
+  VITE_API_URL: https://syn-api-prod.herokuapp.com/graphql
+  VITE_API_TOKEN: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwb3NpdGlvbklkIjoiYjE4NGFiNWEtN2U4Yi00NWU5LWFhYmQtZjBjYTZhZjQxMTIwIiwicHJvamVjdElkIjoiOGQ4NWZiYjQtOThkMS00YmY0LWI1ZDEtNTdhZjQ0OTdmZjUwIiwiZnVsbE5hbWUiOiJGYWJpbyBHdWFyZGFkbyIsImVtYWlsIjoiZmFiaW8uZ3VhcmRhZG8yMDEyQGdtYWlsLmNvbSIsImlhdCI6MTcwMDcxMzgzN30.xzfd2k79Y597bK4-Y8Bmlf5Ej-LCVFtYQPO7vQNs_Co
 
 jobs:
   build:
