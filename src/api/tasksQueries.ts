@@ -18,6 +18,24 @@ export const GET_TASKS = gql`
   }
 `;
 
+export const GET_TASKS_BY_NAME = gql`
+  query getTasksByName($name: String) {
+    tasks(input: { name: $name }) {
+      id
+      name
+      pointEstimate
+      dueDate
+      assignee {
+        id
+        fullName
+        avatar
+      }
+      status
+      tags
+    }
+  }
+`;
+
 export const CREATE_TASK = gql`
   mutation createTask(
     $assigneeId: String

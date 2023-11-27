@@ -1,0 +1,14 @@
+@use '../../styles/variables';
+
+.empty-list {
+  margin-top: 2rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  &__title {
+    color: variables.$secondary-text-color;
+  }
+}

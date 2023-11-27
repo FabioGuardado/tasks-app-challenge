@@ -56,6 +56,23 @@
     }
   }
 
+  &__clear-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border: none;
+    border-radius: 8px;
+    background-color: transparent;
+    color: variables.$primary-text-color;
+    cursor: pointer;
+
+    &:hover {
+    background-color: variables.$primary-background-color;
+    }
+  }
+
   &__profile-image {
     margin-right: 1rem;
     display: flex;

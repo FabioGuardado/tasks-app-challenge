@@ -1,6 +1,7 @@
 import { useQuery } from '@apollo/client';
+import { useSearchParams } from 'react-router-dom';
 
-import { GET_TASKS } from '../../api/tasksQueries';
+import { GET_TASKS, GET_TASKS_BY_NAME } from '../../api/tasksQueries';
 
 import Spinner from '../Spinner/Spinner';
 import EmptyList from '../EmptyList/EmptyList';
@@ -13,7 +14,13 @@ import { STATUS_COLUMN_NAMES } from '../../constants/tasks';
 import './TasksGrid.scss';
 
 const TasksGrid = () => {
-  const { loading, error, data } = useQuery(GET_TASKS);
+  const [searchParams] = useSearchParams();
+  const searchText = searchParams.get('search');
+
+  const { loading, error, data } = useQuery(
+    searchText ? GET_TASKS_BY_NAME : GET_TASKS,
+    { variables: { name: searchText } }
+  );
 
   if (loading) return <Spinner />;
 
