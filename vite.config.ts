@@ -9,8 +9,8 @@ export default defineConfig(({ mode }) => {
 
   return {
     define: {
-      'process.env.REACT_APP_API_URL': JSON.stringify(env.REACT_APP_API_URL),
-      'process.env.REACT_APP_API_TOKEN': JSON.stringify(env.REACT_APP_API_TOKEN),
+      'process.env.REACT_APP_API_URL': JSON.stringify(env.VITE_API_URL),
+      'process.env.REACT_APP_API_TOKEN': JSON.stringify(env.VITE_API_TOKEN),
       'process.env.NODE_ENV': JSON.stringify(env.NODE_ENV),
     },
     plugins: [react()],
@@ -21,6 +21,6 @@ export default defineConfig(({ mode }) => {
         },
       },
     },
-    base: '/tasks-app-challenge/'
+    base: '/tasks-app-challenge'
   }
 });
