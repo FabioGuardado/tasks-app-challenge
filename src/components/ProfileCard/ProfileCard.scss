@@ -1,0 +1,51 @@
+@use '../../styles/variables';
+
+.profile-card {
+  height: 400px;
+  width: 600px;
+  display: grid;
+  background-color: variables.$secondary-background-color;
+  border-radius: 20px;
+  grid-template-rows: 1fr 1fr;
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 3px solid variables.$accent-color;
+  }
+
+  &__image {
+    > img {
+      border-radius: 50%;
+      border: 3px solid variables.$accent-color;
+      margin-right: 2rem;
+    }
+  }
+
+  &__summary-title,
+  &__summary-text {
+    margin: 5px 0;
+  }
+
+  &__summary-text {
+    color: variables.$secondary-text-color;
+  }
+
+  &__body {
+    padding: 3rem;
+  }
+
+  &__detail-group {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  };
+
+  &__detail-title {
+    color: variables.$secondary-text-color;
+    text-transform: uppercase;
+  };
+}

@@ -10,4 +10,26 @@ export const GET_USERS = gql`
   }
 `;
 
+export const GET_USER_PROFILE = gql`
+  query getUserProfile {
+    profile {
+      id
+      avatar
+      createdAt
+      email
+      fullName
+      type
+      updatedAt
+    }
+  }
+`;
+
+export const GET_USER_AVATAR = gql`
+  query getUserAvatar {
+    profile {
+      avatar
+    }
+  }
+`;
+
 export default GET_USERS;

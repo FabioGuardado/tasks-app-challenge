@@ -4,16 +4,19 @@ import TasksGrid from '../TasksGrid/TasksGrid';
 
 import './MainContent.scss';
 import TasksGridErrorBoundary from '../TasksGridErrorBoundary/TasksGridErrorBoundary';
+import DashboardLayout from '../DashboardLayout/DashboardLayout';
 
 const MainContent = () => {
   return (
-    <div className="main-content">
-      <SearchBar />
-      <ContentToolbar />
-      <TasksGridErrorBoundary>
-        <TasksGrid />
-      </TasksGridErrorBoundary>
-    </div>
+    <DashboardLayout>
+      <div className="main-content">
+        <SearchBar />
+        <ContentToolbar />
+        <TasksGridErrorBoundary>
+          <TasksGrid />
+        </TasksGridErrorBoundary>
+      </div>
+    </DashboardLayout>
   );
 };
 
