@@ -11,6 +11,8 @@ export default defineConfig(({ mode }) => {
     define: {
       'VITE_API_URL': JSON.stringify(env.VITE_API_URL),
       'VITE_API_TOKEN': JSON.stringify(env.VITE_API_TOKEN),
+      'process.env.VITE_API_URL': JSON.stringify(env.VITE_API_URL),
+      'process.env.VITE_API_TOKEN': JSON.stringify(env.VITE_API_TOKEN),
       'process.env.NODE_ENV': JSON.stringify(env.NODE_ENV),
     },
     plugins: [react()],
