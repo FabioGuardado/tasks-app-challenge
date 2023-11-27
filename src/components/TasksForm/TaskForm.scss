@@ -1,0 +1,70 @@
+@use '../../styles/variables';
+
+.task-form {
+  display: flex;
+  flex-direction: column;
+
+  &__selectors {
+    margin: 1rem 0;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 10px;
+  }
+
+  &__selector > select,
+  &__date-picker > input{
+    background-color: variables.$secondary-background-color;
+    font-weight: 600;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    color: variables.$primary-text-color;
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
+    > button {
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    &--cancel {
+      margin-right: 1rem;
+      background-color: transparent;
+      color: variables.$primary-text-color;
+
+      &:hover {
+        background-color: variables.$secondary-background-color;
+      }
+    }
+
+    &--action {
+      background-color: variables.$accent-color;
+      color: variables.$primary-text-color;
+    }
+    
+  }
+}
+
+.task-title {
+  width: 80%;
+  color: variables.$primary-text-color;
+  font-size: 1.2rem;
+  font-weight: 600;
+  background-color: transparent;
+  border: none;
+  padding: 3px;
+
+  &:active,
+  &:focus {
+    outline: none;
+  }
+}

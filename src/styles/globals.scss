@@ -11,3 +11,27 @@ body {
   font-family: sans-serif;
   font-size: 16px;
 }
+
+*  > ::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+*  > ::-webkit-scrollbar:vertical {
+  width: 5px;
+}
+*  > ::-webkit-scrollbar:horizontal {
+  height: 5px;
+}
+*  > ::-webkit-scrollbar-button:increment,*  > ::-webkit-scrollbar-button {
+  display: none;
+} 
+
+*  > ::-webkit-scrollbar-thumb {
+  background-color: variables.$secondary-text-color;
+  border-radius: 20px;
+  border: none;
+}
+
+*  > ::-webkit-scrollbar-track {
+  border-radius: 5px;  
+}

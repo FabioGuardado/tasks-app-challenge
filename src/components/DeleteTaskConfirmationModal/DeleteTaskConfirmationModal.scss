@@ -1,0 +1,31 @@
+@use '../../styles/variables';
+
+.delete-task-confirmation {
+  &__title {
+    margin-bottom: 2rem;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
+    > button {
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    &--cancel {
+      margin-right: 1rem;
+      background-color: variables.$secondary-background-color;
+      color: variables.$primary-text-color;
+    }
+
+    &--action {
+      background-color: variables.$accent-color;
+      color: variables.$primary-text-color;
+    }
+  }
+}

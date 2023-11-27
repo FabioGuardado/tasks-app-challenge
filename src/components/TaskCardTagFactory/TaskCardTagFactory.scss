@@ -24,12 +24,32 @@
     color: variables.$android-tag-text-color;
   }
 
+  &__node {
+    background-color: variables.$node-tag-background-color;
+    color: variables.$node-tag-text-color;
+  }
+
+  &__rails {
+    background-color: variables.$rails-tag-background-color;
+    color: variables.$rails-tag-text-color;
+  }
+
+  &__react {
+    background-color: variables.$react-tag-background-color;
+    color: variables.$react-tag-text-color;
+  }
+
   &__on-time {
     background-color: variables.$tertiary-background-color;
   }
 
-  &__delayed {
-    background-color: variables.$delayed-tag-background-color;
-    color: variables.$delayed-tag-text-color;
+  &__almost-late {
+    background-color: variables.$almost-late-tag-background-color;
+    color: variables.$almost-late-tag-text-color;
+  }
+
+  &__late {
+    background-color: variables.$late-tag-background-color;
+    color: variables.$late-tag-text-color;
   }
 }

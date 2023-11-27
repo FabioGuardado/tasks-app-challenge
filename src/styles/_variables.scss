@@ -1,14 +1,27 @@
+/* BACKGROUND AND TEXT */
 $primary-background-color: #212528;
 $secondary-background-color: #2c2f33;
 $tertiary-background-color: #94979A1A;
 $primary-text-color: #ffffff;
 $secondary-text-color: #8d9093;
 $accent-color: #da584b;
+
+/* TAGS COLORS */
 $ios-tag-background-color: #333c36;
 $ios-tag-text-color: #68a34e;
 $android-tag-background-color: #3f3c36;
 $android-tag-text-color: #daac52;
-$delayed-tag-text-color: #3d3335;
-$delayed-tag-background-color: #cf5648;
+$node-tag-background-color: #474747;
+$node-tag-text-color: #a0a0a0;
+$rails-tag-background-color: #771b1b;
+$rails-tag-text-color: #ee4c4c;
+$react-tag-background-color: #032b68;
+$react-tag-text-color: #4365fd;
+$almost-late-tag-background-color: #70692c;
+$almost-late-tag-text-color: #ffe81b;
+$late-tag-background-color: #3d3335;
+$late-tag-text-color: #cf5648;
+
+/* UTILS */
 $nav-item-gradient-first-color: rgb(45, 48, 52, 0);
 $nav-item-gradient-second-color: rgb(218, 85, 73, 0.1);
