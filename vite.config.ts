@@ -9,8 +9,8 @@ export default defineConfig(({ mode }) => {
 
   return {
     define: {
-      'process.env.REACT_APP_API_URL': JSON.stringify(env.VITE_API_URL),
-      'process.env.REACT_APP_API_TOKEN': JSON.stringify(env.VITE_API_TOKEN),
+      'VITE_API_URL': JSON.stringify(env.VITE_API_URL),
+      'VITE_API_TOKEN': JSON.stringify(env.VITE_API_TOKEN),
       'process.env.NODE_ENV': JSON.stringify(env.NODE_ENV),
     },
     plugins: [react()],
