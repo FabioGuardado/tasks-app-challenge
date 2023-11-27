@@ -1,9 +1,9 @@
 import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
-const API_URL = import.meta.env.VITE_API_URL || process.env.VITE_API_URL;
-const API_TOKEN = import.meta.env.VITE_API_TOKEN || process.env.VITE_API_TOKEN;
-const isDevEnv = process.env.NODE_ENV === 'development';
+const API_URL = import.meta.env.VITE_API_URL;
+const API_TOKEN = import.meta.env.VITE_API_TOKEN;
+const isDevEnv = import.meta.env.MODE === 'development';
 
 const httpLink = createHttpLink({
   uri: API_URL,
