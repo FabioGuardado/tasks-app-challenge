@@ -2,7 +2,7 @@ export interface ITask {
   id?: number;
   name?: string;
   tags?: Tags[];
-  dueDate?: Date | string;
+  dueDate?: string;
   pointEstimate?: PointEstimate;
   status?: Status;
   assigneeId?: number;

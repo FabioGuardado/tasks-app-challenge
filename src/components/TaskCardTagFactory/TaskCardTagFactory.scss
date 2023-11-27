@@ -24,6 +24,21 @@
     color: variables.$android-tag-text-color;
   }
 
+  &__node {
+    background-color: variables.$node-tag-background-color;
+    color: variables.$node-tag-text-color;
+  }
+
+  &__rails {
+    background-color: variables.$rails-tag-background-color;
+    color: variables.$rails-tag-text-color;
+  }
+
+  &__react {
+    background-color: variables.$react-tag-background-color;
+    color: variables.$react-tag-text-color;
+  }
+
   &__on-time {
     background-color: variables.$tertiary-background-color;
   }
