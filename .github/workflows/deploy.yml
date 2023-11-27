@@ -6,8 +6,8 @@ on:
       - main
       
 env:
-  VITE_API_URL: ${{ env.VITE_API_URL }}
-  VITE_API_TOKEN: ${{ env.VITE_API_TOKEN }}
+  VITE_API_URL: ${{ vars.VITE_API_URL }}
+  VITE_API_TOKEN: ${{ vars.VITE_API_TOKEN }}
 
 jobs:
   build:
