@@ -6,8 +6,8 @@ import { GET_USERS } from '../../api/usersQueries';
 
 import useModalContext from '../../hooks/useModalContext';
 
-import { ITask, Tags, PointEstimate } from '../../interfaces/task';
-import IUserSummary from '../../interfaces/users';
+import { Tags, PointEstimate, ITaskForm, Status } from '../../interfaces/task';
+import { IUserSummary } from '../../interfaces/users';
 
 import {
   TASKS_FORM_ACTION_TYPES,
@@ -22,7 +22,7 @@ const { CREATE } = TASKS_FORM_ACTION_TYPES;
 
 type TaskFormProps = {
   action: string;
-  task?: ITask;
+  task?: Partial<ITaskForm>;
 };
 
 const TasksForm: React.FunctionComponent<TaskFormProps> = ({
@@ -40,7 +40,9 @@ const TasksForm: React.FunctionComponent<TaskFormProps> = ({
     { refetchQueries: [{ query: GET_TASKS }] }
   );
   const { clearModal } = useModalContext();
-  const [taskFields, setTaskFields] = useState(task);
+  const [taskFields, setTaskFields] = useState<Partial<ITaskForm> | undefined>(
+    task
+  );
 
   const handleFieldChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -50,10 +52,12 @@ const TasksForm: React.FunctionComponent<TaskFormProps> = ({
       newValue = [e.target.value];
     }
 
-    setTaskFields(prevFields => ({
-      ...prevFields,
+    const updatedObject = {
+      ...taskFields,
       [e.target.name]: newValue,
-    }));
+    };
+
+    setTaskFields(updatedObject);
   };
 
   const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
@@ -66,7 +70,7 @@ const TasksForm: React.FunctionComponent<TaskFormProps> = ({
         name: taskFields?.name,
         dueDate: taskFields?.dueDate,
         pointEstimate: taskFields?.pointEstimate,
-        status: taskFields?.status,
+        status: taskFields?.status || Status.TODO,
         tags: taskFields?.tags,
       },
     });

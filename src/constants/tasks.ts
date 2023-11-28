@@ -1,9 +1,9 @@
 export const STATUS_COLUMN_NAMES = [
-  'BACKLOG',
-  'CANCELLED',
-  'DONE',
-  'IN_PROGRESS',
   'TODO',
+  'BACKLOG',
+  'IN_PROGRESS',
+  'DONE',
+  'CANCELLED',
 ];
 
 export const TASKS_ESTIMATION_IN_NUMBERS = {

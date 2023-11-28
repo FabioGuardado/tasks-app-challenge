@@ -35,12 +35,16 @@ const TaskCard = ({ task }: PropsTypes) => {
   };
 
   const handleClickDeleteButton = () => {
-    showModal(<DeleteTaskConfirmationModal taskId={task?.id || ''} />);
+    showModal(<DeleteTaskConfirmationModal taskId={task.id} />);
     toggleMenuButton();
   };
 
+  const handleOnDragStart = (e: React.DragEvent) => {
+    e.dataTransfer.setData('id', task.id);
+  };
+
   return (
-    <div className="task-card">
+    <div className="task-card" draggable onDragStart={handleOnDragStart}>
       <div className="task-card__header">
         <h4 className="task-card__title">{task.name}</h4>
         <div className="task-card__menu">

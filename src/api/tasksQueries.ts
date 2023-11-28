@@ -88,6 +88,14 @@ export const UPDATE_TASK = gql`
   }
 `;
 
+export const UPDATE_TASK_STATUS = gql`
+  mutation updateTaskStatus($id: String!, $status: Status!) {
+    updateTask(input: { id: $id, status: $status }) {
+      id
+    }
+  }
+`;
+
 export const DELETE_TASK = gql`
   mutation deleteTask($id: String!) {
     deleteTask(input: { id: $id }) {
