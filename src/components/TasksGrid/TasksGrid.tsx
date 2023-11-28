@@ -1,15 +1,15 @@
 import { useQuery } from '@apollo/client';
 import { useSearchParams } from 'react-router-dom';
 
-import { GET_TASKS, GET_TASKS_BY_NAME } from '../../api/tasksQueries';
-
 import Spinner from '../Spinner/Spinner';
 import EmptyList from '../EmptyList/EmptyList';
 import TasksColumn from '../TasksColumn/TasksColumn';
 
-import { ITask } from '../../interfaces/task';
+import { GET_TASKS, GET_TASKS_BY_NAME } from '../../api/tasksQueries';
 
 import { STATUS_COLUMN_NAMES } from '../../constants/tasks';
+
+import groupTasksByStatus from '../../utils/groupTasksByStatus';
 
 import './TasksGrid.scss';
 
@@ -28,24 +28,7 @@ const TasksGrid = () => {
 
   if (data.tasks?.length === 0 && !error) return <EmptyList />;
 
-  type GroupedDataType = {
-    [propName: string]: ITask[];
-  };
-
-  type DinamycGroupedDataObjectKey<T> = keyof T;
-
-  const groupedData = data.tasks.reduce(
-    (acc: GroupedDataType, currentValue: ITask) => {
-      acc[currentValue.status as DinamycGroupedDataObjectKey<typeof acc>] = [
-        ...(acc[
-          currentValue.status as DinamycGroupedDataObjectKey<typeof acc>
-        ] || []),
-        currentValue,
-      ];
-      return acc;
-    },
-    {}
-  );
+  const groupedData = groupTasksByStatus(data.tasks);
 
   return (
     <div className="tasks-grid">

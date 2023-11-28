@@ -1,11 +1,20 @@
 export interface ITask {
+  id: string;
+  name: string;
+  tags: Tags[];
+  dueDate: string;
+  pointEstimate: PointEstimate;
+  status: Status;
+  assignee?: Assignee;
+}
+export interface ITaskForm {
   id?: string;
-  name?: string;
-  tags?: Tags[];
-  dueDate?: string;
-  pointEstimate?: PointEstimate;
-  status?: Status;
-  assigneeId?: number;
+  name: string;
+  tags: Tags[];
+  dueDate: string;
+  pointEstimate: PointEstimate;
+  status: Status;
+  assigneeId?: string;
   assignee?: Assignee;
 }
 
