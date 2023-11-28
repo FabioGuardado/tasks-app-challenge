@@ -1,6 +1,8 @@
 import { Link, useLocation } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 
+import ICON_SIZES from '../../constants/iconSizes';
+
 import './NavItem.scss';
 
 type PropTypes = {
@@ -19,7 +21,7 @@ const NavItem = ({ path, icon, label }: PropTypes) => {
           pathname === path ? 'nav-item--active' : 'nav-item--base'
         }`}
       >
-        <Icon height={20} icon={icon} />
+        <Icon height={ICON_SIZES.MEDIUM} icon={icon} />
         <span>{label}</span>
       </li>
     </Link>

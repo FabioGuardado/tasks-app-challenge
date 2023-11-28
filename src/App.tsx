@@ -4,12 +4,16 @@ import NotFoundPage from './components/NotFoundPage/NotFoundPage';
 import MainContent from './components/MainContent/MainContent';
 import Profile from './components/Profile/Profile';
 
+import APP_PATHNAMES from './constants/pathnames';
+
+const { BASE, HOME, PROFILE } = APP_PATHNAMES;
+
 const App = () => {
   return (
-    <BrowserRouter basename="/tasks-app-challenge">
+    <BrowserRouter basename={BASE}>
       <Routes>
-        <Route path="/settings" element={<Profile />} />
-        <Route path="/" element={<MainContent />} />
+        <Route path={PROFILE} element={<Profile />} />
+        <Route path={HOME} element={<MainContent />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>

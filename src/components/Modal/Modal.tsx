@@ -2,6 +2,8 @@ import { Icon } from '@iconify/react';
 
 import useModalContext from '../../hooks/useModalContext';
 
+import ICON_SIZES from '../../constants/iconSizes';
+
 import './Modal.scss';
 
 const Modal = () => {
@@ -12,7 +14,7 @@ const Modal = () => {
       <div className="modal">
         <div className="modal__header">
           <button type="button" className="close-button" onClick={clearModal}>
-            <Icon icon="material-symbols:close" height={20} />
+            <Icon icon="material-symbols:close" height={ICON_SIZES.MEDIUM} />
           </button>
         </div>
         <div className="modal__content">{modal.modalContent}</div>

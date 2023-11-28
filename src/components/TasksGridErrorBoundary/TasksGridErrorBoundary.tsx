@@ -1,6 +1,7 @@
 import { Component, ErrorInfo, ReactNode } from 'react';
-
 import { Icon } from '@iconify/react';
+
+import ICON_SIZES from '../../constants/iconSizes';
 
 import './TasksGridErrorBoundary.scss';
 
@@ -37,7 +38,7 @@ class TaskGridErrorBoundary extends Component<Props, State> {
         <div className="error-container">
           <h1 className="error-container__title">An error has occurred!</h1>
           <p className="error-container__description">{errorMessage}</p>
-          <Icon icon="carbon:data-error" height={90} />
+          <Icon icon="carbon:data-error" height={ICON_SIZES.XL} />
         </div>
       );
     }

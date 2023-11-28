@@ -1,5 +1,10 @@
 import { Icon } from '@iconify/react';
 
+import { Tags } from '../../interfaces/task';
+
+import ICON_SIZES from '../../constants/iconSizes';
+import { timeTags, timeTagsLabels } from '../../constants/timeTags';
+
 import './TaskCardTagFactory.scss';
 
 type TagPropTypes = {
@@ -21,38 +26,46 @@ const TaskCardTag = ({ type }: FactoryPropTypes) => {
   const timeTagBody = (tagLabel: string) => (
     <>
       <span>
-        <Icon icon="gg:alarm" height={24} />
+        <Icon icon="gg:alarm" height={ICON_SIZES.BIG} />
       </span>
       <span>{tagLabel}</span>
     </>
   );
 
   switch (type) {
-    case 'IOS': {
+    case Tags.IOS: {
       return <Tag tagColorClass="tag__ios">iOS App</Tag>;
     }
-    case 'ANDROID': {
+    case Tags.ANDROID: {
       return <Tag tagColorClass="tag__android">Android</Tag>;
     }
-    case 'NODE_JS': {
+    case Tags.NODE_JS: {
       return <Tag tagColorClass="tag__node">Node JS</Tag>;
     }
-    case 'RAILS': {
+    case Tags.RAILS: {
       return <Tag tagColorClass="tag__rails">Rails</Tag>;
     }
-    case 'REACT': {
+    case Tags.REACT: {
       return <Tag tagColorClass="tag__react">React</Tag>;
     }
-    case 'on-time': {
-      return <Tag tagColorClass="tag__on-time">{timeTagBody('On Time')}</Tag>;
-    }
-    case 'almost-late': {
+    case timeTags.ON_TIME: {
       return (
-        <Tag tagColorClass="tag__almost-late">{timeTagBody('Almost Late')}</Tag>
+        <Tag tagColorClass="tag__on-time">
+          {timeTagBody(timeTagsLabels.ON_TIME)}
+        </Tag>
       );
     }
-    case 'late': {
-      return <Tag tagColorClass="tag__late">{timeTagBody('Late')}</Tag>;
+    case timeTags.ALMOST_LATE: {
+      return (
+        <Tag tagColorClass="tag__almost-late">
+          {timeTagBody(timeTagsLabels.ALMOST_LATE)}
+        </Tag>
+      );
+    }
+    case timeTags.LATE: {
+      return (
+        <Tag tagColorClass="tag__late">{timeTagBody(timeTagsLabels.LATE)}</Tag>
+      );
     }
     default: {
       return <Tag tagColorClass="">Not specified</Tag>;

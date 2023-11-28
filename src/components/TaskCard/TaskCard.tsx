@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { Icon } from '@iconify/react';
 
-import placeholderImage from '../../assets/placeholder-profile-photo.jpg';
-import TaskCardTag from '../TaskCardTagFactory/TaskCardTagFactory';
-
 import useModalContext from '../../hooks/useModalContext';
+
+import TaskCardTag from '../TaskCardTagFactory/TaskCardTagFactory';
 import TasksForm from '../TasksForm/TasksForm';
 import DeleteTaskConfirmationModal from '../DeleteTaskConfirmationModal/DeleteTaskConfirmationModal';
 
@@ -12,8 +11,11 @@ import { ITask } from '../../interfaces/task';
 
 import { TASKS_ESTIMATION_IN_NUMBERS } from '../../constants/tasks';
 import { TASKS_FORM_ACTION_TYPES } from '../../constants/taskForm';
+import ICON_SIZES from '../../constants/iconSizes';
 
 import calculateDateDifference from '../../utils/calculateDateDifference';
+
+import placeholderImage from '../../assets/placeholder-profile-photo.jpg';
 
 import './TaskCard.scss';
 
@@ -53,7 +55,7 @@ const TaskCard = ({ task }: PropsTypes) => {
             className="menu-toggler"
             onClick={toggleMenuButton}
           >
-            <Icon icon="tabler:dots" height={20} />
+            <Icon icon="tabler:dots" height={ICON_SIZES.MEDIUM} />
           </button>
           <div
             className={`task-card__submenu ${
@@ -67,7 +69,7 @@ const TaskCard = ({ task }: PropsTypes) => {
               onClick={handleClickEditButton}
               className="task-card__submenu-button"
             >
-              <Icon icon="mingcute:pencil-line" height={16} />
+              <Icon icon="mingcute:pencil-line" height={ICON_SIZES.SMALL} />
               Edit
             </button>
             <button
@@ -75,7 +77,10 @@ const TaskCard = ({ task }: PropsTypes) => {
               onClick={handleClickDeleteButton}
               className="task-card__submenu-button"
             >
-              <Icon icon="material-symbols:delete-outline" height={16} />
+              <Icon
+                icon="material-symbols:delete-outline"
+                height={ICON_SIZES.SMALL}
+              />
               Delete
             </button>
           </div>
@@ -108,19 +113,28 @@ const TaskCard = ({ task }: PropsTypes) => {
         <div className="icons-box">
           <div>
             <span>
-              <Icon icon="heroicons-outline:paper-clip" height={14} />
+              <Icon
+                icon="heroicons-outline:paper-clip"
+                height={ICON_SIZES.EXTRA_SMALL}
+              />
             </span>
           </div>
           <div>
             <span>
               5
-              <Icon icon="system-uicons:hierarchy" height={14} />
+              <Icon
+                icon="system-uicons:hierarchy"
+                height={ICON_SIZES.EXTRA_SMALL}
+              />
             </span>
           </div>
           <div>
             <span>
               3
-              <Icon icon="tabler:message-circle" height={14} />
+              <Icon
+                icon="tabler:message-circle"
+                height={ICON_SIZES.EXTRA_SMALL}
+              />
             </span>
           </div>
         </div>

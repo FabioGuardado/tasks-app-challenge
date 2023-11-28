@@ -13,3 +13,8 @@ export const FORM_INITIAL_STATE: Partial<ITaskForm> = {
   assigneeId: '',
   status: Status.TODO,
 };
+
+export const ACTION_BUTTONS_LABELS = {
+  CREATE: 'Create',
+  UPDATE: 'Update',
+};

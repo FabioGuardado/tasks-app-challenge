@@ -3,10 +3,13 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { Icon } from '@iconify/react';
 
+import { GET_USER_AVATAR } from '../../api/usersQueries';
+
 import placeholderImage from '../../assets/placeholder-profile-photo.jpg';
 
+import ICON_SIZES from '../../constants/iconSizes';
+
 import './SearchBar.scss';
-import { GET_USER_AVATAR } from '../../api/usersQueries';
 
 const SearchBar = () => {
   const { data } = useQuery(GET_USER_AVATAR);
@@ -56,7 +59,7 @@ const SearchBar = () => {
             className="search-bar__clear-button"
             onClick={handleClearSearchParams}
           >
-            <Icon icon="material-symbols:close" height={20} />
+            <Icon icon="material-symbols:close" height={ICON_SIZES.MEDIUM} />
           </button>
         ) : null}
       </div>
