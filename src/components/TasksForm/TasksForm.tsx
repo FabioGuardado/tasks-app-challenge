@@ -6,7 +6,9 @@ import { GET_USERS } from '../../api/usersQueries';
 
 import useModalContext from '../../hooks/useModalContext';
 
-import { Tags, PointEstimate, ITaskForm, Status } from '../../interfaces/task';
+import TagsSelector from '../TagsSelector/TagsSelector';
+
+import { PointEstimate, ITaskForm, Status, Tags } from '../../interfaces/task';
 import { IUserSummary } from '../../interfaces/users';
 
 import {
@@ -40,9 +42,24 @@ const TasksForm: React.FunctionComponent<TaskFormProps> = ({
     { refetchQueries: [{ query: GET_TASKS }] }
   );
   const { clearModal } = useModalContext();
+
   const [taskFields, setTaskFields] = useState<Partial<ITaskForm> | undefined>(
     task
   );
+  const [selectedLabels, setSelectedLabels] = useState<Tags[]>(
+    task?.tags || []
+  );
+
+  const handleListItemClick = (tagName: Tags) => {
+    let newTagsArray: Tags[] = selectedLabels;
+    if (selectedLabels.includes(tagName)) {
+      newTagsArray = selectedLabels.filter(tag => tag !== tagName);
+    } else {
+      newTagsArray.push(tagName);
+    }
+
+    setSelectedLabels(newTagsArray);
+  };
 
   const handleFieldChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -71,7 +88,7 @@ const TasksForm: React.FunctionComponent<TaskFormProps> = ({
         dueDate: taskFields?.dueDate,
         pointEstimate: taskFields?.pointEstimate,
         status: taskFields?.status || Status.TODO,
-        tags: taskFields?.tags,
+        tags: selectedLabels,
       },
     });
 
@@ -136,24 +153,10 @@ const TasksForm: React.FunctionComponent<TaskFormProps> = ({
             </select>
           </div>
 
-          <div className="task-form__selector">
-            <select
-              name="tags"
-              id="tags"
-              value={taskFields?.tags}
-              placeholder="Labels"
-              onChange={handleFieldChange}
-            >
-              <option selected value="" disabled hidden>
-                Labels
-              </option>
-              <option value={Tags.ANDROID}>ANDROID</option>
-              <option value={Tags.IOS}>IOS</option>
-              <option value={Tags.NODE_JS}>NODE JS</option>
-              <option value={Tags.RAILS}>RAILS</option>
-              <option value={Tags.REACT}>REACT</option>
-            </select>
-          </div>
+          <TagsSelector
+            selectedLabels={selectedLabels}
+            handleListItemClick={handleListItemClick}
+          />
 
           <div className="task-form__date-picker">
             <input
