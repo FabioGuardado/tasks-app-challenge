@@ -3,6 +3,8 @@ import { Icon } from '@iconify/react';
 
 import { Tags } from '../../interfaces/task';
 
+import ICON_SIZES from '../../constants/iconSizes';
+
 import './TagsSelector.scss';
 
 type PropsTypes = {
@@ -42,7 +44,7 @@ const TagsSelector = ({ selectedLabels, handleListItemClick }: PropsTypes) => {
               onClick={() => handleListItemClick(Tags.ANDROID)}
             >
               <Icon
-                height={16}
+                height={ICON_SIZES.SMALL}
                 icon={`${
                   selectedLabels.includes(Tags.ANDROID)
                     ? 'mingcute:checkbox-line'
@@ -60,7 +62,7 @@ const TagsSelector = ({ selectedLabels, handleListItemClick }: PropsTypes) => {
               onClick={() => handleListItemClick(Tags.IOS)}
             >
               <Icon
-                height={16}
+                height={ICON_SIZES.SMALL}
                 icon={`${
                   selectedLabels.includes(Tags.IOS)
                     ? 'mingcute:checkbox-line'
@@ -78,7 +80,7 @@ const TagsSelector = ({ selectedLabels, handleListItemClick }: PropsTypes) => {
               onClick={() => handleListItemClick(Tags.NODE_JS)}
             >
               <Icon
-                height={16}
+                height={ICON_SIZES.SMALL}
                 icon={`${
                   selectedLabels.includes(Tags.NODE_JS)
                     ? 'mingcute:checkbox-line'
@@ -96,7 +98,7 @@ const TagsSelector = ({ selectedLabels, handleListItemClick }: PropsTypes) => {
               onClick={() => handleListItemClick(Tags.RAILS)}
             >
               <Icon
-                height={16}
+                height={ICON_SIZES.SMALL}
                 icon={`${
                   selectedLabels.includes(Tags.RAILS)
                     ? 'mingcute:checkbox-line'
@@ -114,7 +116,7 @@ const TagsSelector = ({ selectedLabels, handleListItemClick }: PropsTypes) => {
               onClick={() => handleListItemClick(Tags.REACT)}
             >
               <Icon
-                height={16}
+                height={ICON_SIZES.SMALL}
                 icon={`${
                   selectedLabels.includes(Tags.REACT)
                     ? 'mingcute:checkbox-line'

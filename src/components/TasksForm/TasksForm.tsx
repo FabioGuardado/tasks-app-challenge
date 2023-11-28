@@ -14,6 +14,7 @@ import { IUserSummary } from '../../interfaces/users';
 import {
   TASKS_FORM_ACTION_TYPES,
   FORM_INITIAL_STATE,
+  ACTION_BUTTONS_LABELS,
 } from '../../constants/taskForm';
 
 import formatInputDate from '../../utils/formatInputDate';
@@ -21,6 +22,7 @@ import formatInputDate from '../../utils/formatInputDate';
 import './TaskForm.scss';
 
 const { CREATE } = TASKS_FORM_ACTION_TYPES;
+const { CREATE: CREATE_LABEL, UPDATE: UPDATE_LABEL } = ACTION_BUTTONS_LABELS;
 
 type TaskFormProps = {
   action: string;
@@ -37,7 +39,7 @@ const TasksForm: React.FunctionComponent<TaskFormProps> = ({
 
   const { data, loading } = useQuery(GET_USERS);
 
-  const [executeQuery] = useMutation(
+  const [executeMutation] = useMutation(
     action === CREATE ? CREATE_TASK : UPDATE_TASK,
     { refetchQueries: [{ query: GET_TASKS }] }
   );
@@ -80,7 +82,7 @@ const TasksForm: React.FunctionComponent<TaskFormProps> = ({
   const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    executeQuery({
+    executeMutation({
       variables: {
         id: taskFields?.id,
         assigneeId: taskFields?.assigneeId,
@@ -178,7 +180,7 @@ const TasksForm: React.FunctionComponent<TaskFormProps> = ({
             Cancel
           </button>
           <button type="submit" className="task-form__buttons--action">
-            {action === CREATE ? 'Create' : 'Update'}
+            {action === CREATE ? CREATE_LABEL : UPDATE_LABEL}
           </button>
         </div>
       </form>
